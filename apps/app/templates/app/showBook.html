@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>{{ book.title }}</h1>
+	<h2>{{ book.author.name }}</h2>
+
+	<h1>Reviews:</h1>
+
+	{%for review in reviews %}
+		<p><a href="/books/{{ review.book_id }}"> {{ review.book.title }} </a></p>
+		<p>Rating:{{ review.rating }}/5 </p>
+
+		<p><a href="/users/{{ review.user_id }}">{{ review.user.name }}</a> says: {{ review.text }}</p>
+		<p>{{ review.createdAt }}</p>		
+	{%endfor%}
+</body>
+</html>

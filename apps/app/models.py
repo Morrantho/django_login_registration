@@ -40,3 +40,18 @@ class User(models.Model):
 	email    = models.CharField(max_length=255)
 	password = models.CharField(max_length=255)
 	objects  = UserManager()
+
+class Author(models.Model):
+	name = models.CharField(max_length=255)
+
+class Book(models.Model):
+	title = models.CharField(max_length=255)
+	author = models.ForeignKey(Author,related_name="books")
+
+class Review(models.Model):
+	text = models.CharField(max_length=255)
+	rating = models.IntegerField()
+	user = models.ForeignKey(User,related_name="user_reviews")
+	book = models.ForeignKey(Book,related_name="book_reviews")
+	createdAt = models.DateTimeField(auto_now_add=True)
+	updatedAt = models.DateTimeField(auto_now=True)

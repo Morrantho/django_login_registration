@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Book and Review</title>
+</head>
+<body>
+	<h1>Add Book and Review:</h1>
+
+	{% if messages %}
+		{%for message in messages%}
+			<h1>{{message}}</h1>
+		{%endfor%}
+	{%endif%}
+
+	<form action="/books/new" method="POST">
+		<p>Title:<input type="text" name="title"></p>
+
+		<p>Choose from the list:</p>
+
+		<select name="author">
+			{%for author in authors%}
+				<option value="{{ author.id }}" > {{ author.name }} </option>
+			{%endfor%}
+		</select>
+
+		<p>Or add a new author:<input type="text" name="newAuthor" ></p>
+
+		<p>Review:<input type="text" name="review" ></p>
+
+		<p>Rating: <input type="number" name="rating" ></p>
+
+		{%csrf_token%}
+		<input type="submit" value="Add Book">
+	</form>
+</body>
+</html>

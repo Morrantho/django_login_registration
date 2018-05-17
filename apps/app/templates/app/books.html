@@ -4,6 +4,36 @@
 	<title>Books</title>
 </head>
 <body>
-	<h1>Welcome to books!</h1>
+	<style type="text/css">
+		.reviews{
+			overflow: scroll;
+			height: 25vh;
+			width:300px;
+			float: right;
+			border: 1px solid black;
+			vertical-align: top;
+		}
+	</style>
+
+	<h1>Welcome,  </h1>
+	<a href="/books/add">Add Book and Review</a>
+	<a href="/">Logout</a>
+
+
+	<h2>Recent Book Reviews:</h2>
+
+	{%for review in reviews%}
+		<p><a href="/books/{{ review.book_id }}"> {{ review.book.title }} </a></p>
+		<p>Rating:{{ review.rating }}/5 </p>
+
+		<p><a href="/users/{{ review.user_id }}">{{ review.user.name }}</a> says: {{ review.text }}</p>
+		<p>{{ review.createdAt }}</p>
+	{%endfor%}
+
+	<div class="reviews">
+		{%for review in otherReviews%}
+			<p><a href="/books/{{ review.book_id }}"> {{ review.book.title }} </a></p>
+		{%endfor%}		
+	</div>
 </body>
 </html>
